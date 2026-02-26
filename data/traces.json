@@ -1,0 +1,230 @@
+[
+  {
+    "id": "trace-001",
+    "span_id": "span_4a7f2b1c9e",
+    "root_span_id": "root_4a7f2b1c9e",
+    "metadata": {
+      "model": "claude-3-5-sonnet-20241022",
+      "temperature": 0.7,
+      "max_tokens": 4096,
+      "timestamp": "2024-11-15T10:22:04Z",
+      "experiment": "general-qa-v2"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a knowledgeable assistant. Provide clear, accurate, and concise answers."
+      },
+      {
+        "role": "user",
+        "content": "What is the capital of France and what is it known for?",
+        "metadata": { "turn": 1, "user_id": "user_881" }
+      },
+      {
+        "role": "assistant",
+        "content": "The capital of France is **Paris**.\n\nParis is known for many things:\n\n- **The Eiffel Tower** – The iconic iron lattice tower built in 1889, standing 330 meters tall\n- **The Louvre** – The world's largest art museum, home to the Mona Lisa and over 380,000 works\n- **Gastronomy** – French cuisine is UNESCO-listed; Paris has more Michelin-starred restaurants than any other city\n- **Fashion** – Home to top fashion houses including Chanel, Louis Vuitton, Dior, and Givenchy\n- **History** – Site of the French Revolution, the Commune, and two World Wars\n- **Architecture** – Haussmann's 19th-century boulevards, Notre-Dame Cathedral, and Sacré-Cœur Basilica\n\nIt sits on the Seine River and is home to approximately 2.1 million people in the city proper (12 million in greater Paris).",
+        "metadata": { "turn": 1, "latency_ms": 1842, "prompt_tokens": 48, "completion_tokens": 187 }
+      }
+    ]
+  },
+  {
+    "id": "trace-002",
+    "span_id": "span_9c3d8f5e12",
+    "root_span_id": "root_9c3d8f5e12",
+    "metadata": {
+      "model": "claude-3-5-sonnet-20241022",
+      "temperature": 0.3,
+      "max_tokens": 4096,
+      "timestamp": "2024-11-15T10:45:17Z",
+      "experiment": "math-tutor-v1"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a patient math tutor. Walk through each step of problem solving clearly, and encourage the student."
+      },
+      {
+        "role": "user",
+        "content": "Help me solve this equation: 2x + 5 = 13",
+        "metadata": { "turn": 1, "user_id": "user_334" }
+      },
+      {
+        "role": "assistant",
+        "content": "Great problem! Let's solve 2x + 5 = 13 step by step.\n\n**Step 1: Isolate the term with x**\nSubtract 5 from both sides:\n```\n2x + 5 - 5 = 13 - 5\n2x = 8\n```\n\n**Step 2: Solve for x**\nDivide both sides by 2:\n```\n2x / 2 = 8 / 2\nx = 4\n```\n\n**Check your answer:**\nPlug x = 4 back into the original equation:\n```\n2(4) + 5 = 8 + 5 = 13 ✓\n```\n\nSo **x = 4**. You've got it! Want to try another one?",
+        "metadata": { "turn": 1, "latency_ms": 2103, "prompt_tokens": 62, "completion_tokens": 152 }
+      },
+      {
+        "role": "user",
+        "content": "Yes! What about 3x - 7 = 11?",
+        "metadata": { "turn": 2, "user_id": "user_334" }
+      },
+      {
+        "role": "assistant",
+        "content": "Nice one! Same approach. Let's go:\n\n**Step 1: Isolate the x term**\nAdd 7 to both sides:\n```\n3x - 7 + 7 = 11 + 7\n3x = 18\n```\n\n**Step 2: Solve for x**\nDivide both sides by 3:\n```\n3x / 3 = 18 / 3\nx = 6\n```\n\n**Verification:**\n```\n3(6) - 7 = 18 - 7 = 11 ✓\n```\n\n**x = 6** — perfect! You're getting the hang of it. The pattern is always:\n1. Get the x-term alone (add/subtract)\n2. Isolate x (multiply/divide)\n3. Always verify!",
+        "metadata": { "turn": 2, "latency_ms": 1677, "prompt_tokens": 224, "completion_tokens": 143 }
+      }
+    ]
+  },
+  {
+    "id": "trace-003",
+    "span_id": "span_7b5a1f0d34",
+    "root_span_id": "root_7b5a1f0d34",
+    "metadata": {
+      "model": "claude-3-5-sonnet-20241022",
+      "temperature": 0.5,
+      "max_tokens": 2048,
+      "timestamp": "2024-11-15T11:03:52Z",
+      "experiment": "tool-use-weather-v3",
+      "tools": ["search_weather", "get_location"]
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "What's the weather like in New York City right now? Should I bring an umbrella?",
+        "metadata": { "turn": 1, "user_id": "user_557" }
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_Kx9mN2pQ",
+            "type": "function",
+            "function": {
+              "name": "search_weather",
+              "arguments": "{\"location\": \"New York City, NY\", \"units\": \"imperial\"}"
+            }
+          }
+        ],
+        "metadata": { "turn": 1, "latency_ms": 834, "prompt_tokens": 89, "completion_tokens": 41 }
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_Kx9mN2pQ",
+        "content": "{\n  \"location\": \"New York City, NY\",\n  \"temperature\": 52,\n  \"feels_like\": 47,\n  \"condition\": \"Light Rain\",\n  \"humidity\": 84,\n  \"wind_speed\": 12,\n  \"wind_direction\": \"NE\",\n  \"precipitation_chance\": 85,\n  \"forecast_next_3h\": \"Rain continuing\"\n}",
+        "metadata": { "tool_name": "search_weather", "latency_ms": 213 }
+      },
+      {
+        "role": "assistant",
+        "content": "Yes, definitely bring an umbrella! Here's the current weather in New York City:\n\n- **Condition:** Light Rain (rain continuing for the next few hours)\n- **Temperature:** 52°F (feels like 47°F)\n- **Humidity:** 84%\n- **Wind:** 12 mph from the northeast\n- **Precipitation chance:** 85%\n\nIt's a chilly, rainy day out there. I'd recommend an umbrella and a light waterproof jacket. The NE wind makes it feel colder than 52°F, so layering would help.",
+        "metadata": { "turn": 1, "latency_ms": 1492, "prompt_tokens": 201, "completion_tokens": 118 }
+      }
+    ]
+  },
+  {
+    "id": "trace-004",
+    "span_id": "span_2e8c6b4912",
+    "root_span_id": "root_2e8c6b4912",
+    "metadata": {
+      "model": "claude-3-5-sonnet-20241022",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "timestamp": "2024-11-15T11:28:39Z",
+      "experiment": "code-gen-python-v4"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert Python developer. Write clean, efficient, well-documented code. Include type hints and docstrings."
+      },
+      {
+        "role": "user",
+        "content": "Write a Python function to check if a string is a palindrome. It should handle spaces, punctuation, and be case-insensitive.",
+        "metadata": { "turn": 1, "user_id": "user_112" }
+      },
+      {
+        "role": "assistant",
+        "content": "Here's a clean, well-documented palindrome checker:\n\n```python\nimport re\n\ndef is_palindrome(text: str) -> bool:\n    \"\"\"\n    Check if a string is a palindrome, ignoring case,\n    spaces, and punctuation.\n    \n    Args:\n        text: The input string to check.\n        \n    Returns:\n        True if the string is a palindrome, False otherwise.\n        \n    Examples:\n        >>> is_palindrome(\"A man, a plan, a canal: Panama\")\n        True\n        >>> is_palindrome(\"race a car\")\n        False\n        >>> is_palindrome(\"Was it a car or a cat I saw?\")\n        True\n    \"\"\"\n    # Strip all non-alphanumeric characters and convert to lowercase\n    cleaned = re.sub(r'[^a-z0-9]', '', text.lower())\n    \n    # Compare with its reverse\n    return cleaned == cleaned[::-1]\n```\n\n**How it works:**\n1. `re.sub(r'[^a-z0-9]', '', text.lower())` removes everything except letters and digits after lowercasing\n2. `cleaned[::-1]` reverses the string using Python slice notation\n3. A string is a palindrome if it equals its reverse\n\n**Usage examples:**\n```python\nprint(is_palindrome(\"racecar\"))                      # True\nprint(is_palindrome(\"A man, a plan, a canal: Panama\")) # True\nprint(is_palindrome(\"hello\"))                         # False\nprint(is_palindrome(\"Was it a car or a cat I saw?\"))  # True\nprint(is_palindrome(\"\"))                              # True (empty is palindrome)\n```\n\n**Time complexity:** O(n) — one pass to clean, one to reverse\n**Space complexity:** O(n) — stores the cleaned string",
+        "metadata": { "turn": 1, "latency_ms": 3217, "prompt_tokens": 73, "completion_tokens": 298 }
+      }
+    ]
+  },
+  {
+    "id": "trace-005",
+    "span_id": "span_3f1d9a8c56",
+    "root_span_id": "root_3f1d9a8c56",
+    "metadata": {
+      "model": "claude-3-5-sonnet-20241022",
+      "temperature": 0.4,
+      "max_tokens": 4096,
+      "timestamp": "2024-11-15T11:52:14Z",
+      "experiment": "code-review-v2",
+      "tools": ["run_linter", "check_types"]
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert code reviewer. Identify bugs, style issues, and suggest improvements. Be specific and constructive."
+      },
+      {
+        "role": "user",
+        "content": "Please review this Python code:\n\n```python\ndef calculate_average(numbers):\n    total = 0\n    for n in numbers:\n        total = total + n\n    average = total / len(numbers)\n    return average\n\nresult = calculate_average([1, 2, 3, 4, 5])\nprint(\"Average:\", result)\n```",
+        "metadata": { "turn": 1, "user_id": "user_229" }
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_Pm3rL8vT",
+            "type": "function",
+            "function": {
+              "name": "run_linter",
+              "arguments": "{\"code\": \"def calculate_average(numbers):\\n    total = 0\\n    for n in numbers:\\n        total = total + n\\n    average = total / len(numbers)\\n    return average\", \"linter\": \"pylint\"}"
+            }
+          }
+        ],
+        "metadata": { "turn": 1, "latency_ms": 756, "prompt_tokens": 143, "completion_tokens": 58 }
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_Pm3rL8vT",
+        "content": "{\n  \"score\": 6.5,\n  \"issues\": [\n    {\"line\": 1, \"code\": \"C0116\", \"message\": \"Missing function or method docstring\"},\n    {\"line\": 1, \"code\": \"W9015\", \"message\": \"Missing type annotations for parameters and return type\"},\n    {\"line\": 4, \"code\": \"C0301\", \"message\": \"Use augmented assignment += instead of total = total + n\"}\n  ]\n}",
+        "metadata": { "tool_name": "run_linter", "latency_ms": 489 }
+      },
+      {
+        "role": "assistant",
+        "content": "Here's my review of your `calculate_average` function:\n\n**Issues Found:**\n\n1. **Critical Bug: Division by Zero** (line 5)\n   The function will crash with `ZeroDivisionError` if `numbers` is an empty list. You need a guard:\n   ```python\n   if not numbers:\n       return 0  # or raise ValueError(\"Cannot average an empty list\")\n   ```\n\n2. **Style: Use `+=`** (linter C0301)\n   Replace `total = total + n` with `total += n`\n\n3. **Missing type hints and docstring** (linter W9015, C0116)\n   Add `-> float` return type and parameter annotation\n\n4. **Simplification**: Python's built-in `sum()` makes the loop unnecessary\n\n**Improved version:**\n```python\ndef calculate_average(numbers: list[float]) -> float:\n    \"\"\"Return the arithmetic mean of a list of numbers.\n    \n    Args:\n        numbers: A non-empty list of numeric values.\n        \n    Raises:\n        ValueError: If the list is empty.\n    \"\"\"\n    if not numbers:\n        raise ValueError(\"Cannot compute average of an empty list\")\n    return sum(numbers) / len(numbers)\n```\n\n**Summary:** The main issue is the missing empty-list check — everything else is style. The improved version is also 2 lines shorter.",
+        "metadata": { "turn": 1, "latency_ms": 2891, "prompt_tokens": 312, "completion_tokens": 241 }
+      },
+      {
+        "role": "user",
+        "content": "How should I handle the case where someone passes a non-numeric value in the list?",
+        "metadata": { "turn": 2, "user_id": "user_229" }
+      },
+      {
+        "role": "assistant",
+        "content": "Good question. There are two approaches depending on how strict you want to be:\n\n**Option 1: Fail fast (recommended)**\nLet Python raise a `TypeError` naturally — it will happen at `sum()` and the message is clear:\n```python\n>>> calculate_average([1, 2, \"three\"])\nTypeError: unsupported operand type(s) for +: 'int' and 'str'\n```\nAdd a note in the docstring: `Raises: TypeError: If any element is not numeric.`\n\n**Option 2: Explicit validation**\nIf you want a clearer error message:\n```python\ndef calculate_average(numbers: list[float]) -> float:\n    \"\"\"...\"\"\"\n    if not numbers:\n        raise ValueError(\"Cannot compute average of an empty list\")\n    if not all(isinstance(n, (int, float)) for n in numbers):\n        raise TypeError(\"All elements must be numeric (int or float)\")\n    return sum(numbers) / len(numbers)\n```\n\n**Option 3: Skip non-numeric values**\nIf silently filtering bad data is acceptable:\n```python\ndef calculate_average(numbers: list) -> float:\n    numeric = [n for n in numbers if isinstance(n, (int, float))]\n    if not numeric:\n        raise ValueError(\"No numeric values found\")\n    return sum(numeric) / len(numeric)\n```\n\n**My recommendation:** Use Option 1 (fail fast) for internal code, Option 2 (explicit validation) for public APIs or user-facing code. Option 3 is risky because silent data loss can hide bugs.",
+        "metadata": { "turn": 2, "latency_ms": 2544, "prompt_tokens": 587, "completion_tokens": 259 }
+      }
+    ]
+  },
+  {
+    "id": "trace-006",
+    "span_id": "span_8b2e5c7a90",
+    "root_span_id": "root_8b2e5c7a90",
+    "metadata": {
+      "model": "claude-3-5-sonnet-20241022",
+      "temperature": 0.1,
+      "max_tokens": 2048,
+      "timestamp": "2024-11-15T12:14:08Z",
+      "experiment": "extraction-structured-v1"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a data extraction assistant. Extract structured information from unstructured text and return it as valid JSON. Only return JSON, no explanation."
+      },
+      {
+        "role": "user",
+        "content": "Extract key information from this news article:\n\nApple Inc. reported record quarterly revenue of $119.6 billion for Q1 2024, up 2% year-over-year. CEO Tim Cook highlighted strong iPhone 15 Pro sales and growing services revenue. The company's Services segment reached $23.1 billion, a 17% increase, while Mac revenue declined 27% to $7.8 billion. Apple's gross margin improved to 45.9%. The company authorized an additional $110 billion in share buybacks.",
+        "metadata": { "turn": 1, "user_id": "user_774" }
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"company\": \"Apple Inc.\",\n  \"period\": \"Q1 2024\",\n  \"total_revenue\": {\n    \"value\": 119.6,\n    \"unit\": \"billion USD\",\n    \"yoy_change\": \"+2%\"\n  },\n  \"segments\": [\n    {\n      \"name\": \"Services\",\n      \"revenue\": 23.1,\n      \"unit\": \"billion USD\",\n      \"yoy_change\": \"+17%\"\n    },\n    {\n      \"name\": \"Mac\",\n      \"revenue\": 7.8,\n      \"unit\": \"billion USD\",\n      \"yoy_change\": \"-27%\"\n    }\n  ],\n  \"key_metrics\": {\n    \"gross_margin\": \"45.9%\"\n  },\n  \"executive\": {\n    \"name\": \"Tim Cook\",\n    \"title\": \"CEO\"\n  },\n  \"highlights\": [\n    \"Record quarterly revenue\",\n    \"Strong iPhone 15 Pro sales\",\n    \"Growing services revenue\",\n    \"$110 billion share buyback authorization\"\n  ]\n}",
+        "metadata": { "turn": 1, "latency_ms": 2089, "prompt_tokens": 182, "completion_tokens": 198 }
+      }
+    ]
+  }
+]

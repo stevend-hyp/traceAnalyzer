@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trace Annotator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-brand">Trace Annotator</div>
+
+    <div class="header-center">
+      <span id="trace-counter" class="trace-counter"></span>
+      <span id="trace-meta" class="trace-meta"></span>
+    </div>
+
+    <div class="header-nav">
+      <div class="progress-badge" id="progress-badge"></div>
+      <button class="nav-btn" id="prev-btn" title="Previous trace (←)">&#8592; Prev</button>
+      <button class="nav-btn" id="next-btn" title="Next trace (→)">Next &#8594;</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="column" id="col-input">
+      <div class="col-header">Input</div>
+      <div class="col-body" id="input-content"></div>
+    </section>
+
+    <section class="column" id="col-output">
+      <div class="col-header">Output</div>
+      <div class="col-body" id="output-content"></div>
+    </section>
+
+    <section class="column" id="col-feedback">
+      <div class="col-header">Feedback</div>
+      <div class="col-body col-feedback-body">
+        <textarea
+          id="feedback-text"
+          placeholder="Write your feedback notes here…&#10;&#10;Use ← → arrow keys to navigate traces (works from here too)."
+          spellcheck="true"
+        ></textarea>
+        <div class="save-indicator" id="save-indicator">&#10003; Saved</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
