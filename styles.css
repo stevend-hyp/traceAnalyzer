@@ -44,6 +44,8 @@
 
   /* Colors · Orange */
   --clr-orange-50:   #b16100; /* orange.50        */
+  --clr-orange-70:   #ff8c00; /* orange.70        */
+  --clr-orange-80:   #fec480; /* orange.80        */
   --clr-orange-90:   #ffe1bc; /* orange.90        */
   --clr-orange-95:   #ffedd5; /* orange.95        */
 
@@ -360,12 +362,12 @@ main {
 }
 
 .msg-assistant {
-  border-color: var(--clr-orange-90);
-  background: var(--clr-orange-95);
+  border-color: var(--clr-orange-80);
+  background: var(--clr-orange-90);
 }
 .msg-assistant .message-role-tag {
-  background: var(--clr-orange-90);
-  color: var(--clr-orange-50);
+  background: var(--clr-orange-70);
+  color: var(--clr-white);
 }
 
 /* ─── Tool Calls ────────────────────────────────────────────────────────────── */
