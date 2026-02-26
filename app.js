@@ -287,6 +287,7 @@ window.addEventListener('keydown', (e) => {
 
 document.getElementById('prev-btn').addEventListener('click', () => navigate(-1));
 document.getElementById('next-btn').addEventListener('click', () => navigate(1));
+document.getElementById('download-btn').addEventListener('click', downloadCsv);
 
 // Auto-save annotation with debounce
 feedbackEl().addEventListener('input', () => {
@@ -301,6 +302,82 @@ feedbackEl().addEventListener('input', () => {
     }
   }, 600);
 });
+
+// ─── CSV export ───────────────────────────────────────────────────────────────
+
+// Wrap a value in double-quotes and escape any internal double-quotes (RFC 4180).
+function csvCell(value) {
+  const s = value == null ? '' : String(value);
+  return '"' + s.replace(/"/g, '""') + '"';
+}
+
+// Flatten a message to plain text for the CSV columns.
+function messageToPlainText(msg) {
+  const parts = [];
+  if (msg.content) parts.push(msg.content);
+  if (Array.isArray(msg.tool_calls)) {
+    for (const tc of msg.tool_calls) {
+      const name = tc.function?.name || 'tool';
+      const args = tc.function?.arguments || '';
+      parts.push(`→ ${name}(${args})`);
+    }
+  }
+  return parts.join('\n');
+}
+
+function buildCsv() {
+  // Make sure whatever is in the textarea right now is persisted first.
+  flushAnnotation();
+
+  const HEADERS = [
+    'trace_id', 'span_id', 'root_span_id',
+    'model', 'experiment', 'timestamp',
+    'num_messages', 'input_text', 'output_text', 'notes',
+  ];
+
+  const rows = traces.map(trace => {
+    const messages = trace.messages || [];
+
+    const inputText = messages
+      .filter(m => m.role === 'system' || m.role === 'user' || m.role === 'tool')
+      .map(m => `[${m.role.toUpperCase()}]\n${messageToPlainText(m)}`)
+      .join('\n\n');
+
+    const outputText = messages
+      .filter(m => m.role === 'assistant')
+      .map(m => messageToPlainText(m))
+      .join('\n\n');
+
+    return [
+      trace.id,
+      trace.span_id        || '',
+      trace.root_span_id   || '',
+      trace.metadata?.model      || '',
+      trace.metadata?.experiment || '',
+      trace.metadata?.timestamp  || '',
+      messages.length,
+      inputText,
+      outputText,
+      loadAnnotation(trace.id),
+    ].map(csvCell).join(',');
+  });
+
+  return [HEADERS.map(csvCell).join(','), ...rows].join('\r\n');
+}
+
+function downloadCsv() {
+  const csv = buildCsv();
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `trace-annotations-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('Exported annotations CSV');
+}
 
 // ─── Boot ─────────────────────────────────────────────────────────────────────
 
