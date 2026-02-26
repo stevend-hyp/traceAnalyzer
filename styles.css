@@ -115,6 +115,17 @@ header {
   cursor: default;
 }
 
+.download-btn {
+  background: #1a3a2a;
+  color: #30d158;
+  border: 1px solid #1f4d34;
+  margin-left: 4px;
+}
+
+.download-btn:hover:not(:disabled) {
+  background: #1f4d34;
+}
+
 /* ─── Main Layout ───────────────────────────────────────────────────────────── */
 main {
   flex: 1;
